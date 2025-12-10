@@ -115,8 +115,10 @@ export default function WordsList() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={s.card}>
-            <Text style={s.word}>{item.text}</Text>
-            {item.note ? <Text style={s.note}>{item.note}</Text> : null}{" "}
+            <View style={{ display: "flex", flexDirection: "column" }}>
+              <Text style={s.word}>{item.text}</Text>
+              {item.note ? <Text style={s.note}>{item.note}</Text> : null}{" "}
+            </View>
             <View style={s.cardButtons}>
               <TouchableOpacity onPress={() => startEdit(item)}>
                 <Ionicons name="create-outline" size={25} color="#8C00FF" />
@@ -156,8 +158,10 @@ const s = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    width: "100%",
   },
   word: { fontSize: 18, fontWeight: "600" },
+  note: { fontSize: 14, color: "#555", marginTop: 5 },
   cardButtons: { flexDirection: "row", alignItems: "center" },
   link: { fontSize: 16, color: "#06c" },
 });
