@@ -34,7 +34,7 @@ export default function WordsList() {
   useEffect(() => {
     if (!user) return;
     const q = query(
-      collection(db, "Whishlist"),
+      collection(db, "Wishlist"),
       where("ownerId", "==", user.uid),
       orderBy("createdAt", "desc")
     );
@@ -52,13 +52,13 @@ export default function WordsList() {
 
     if (editingId) {
       await updateDoc(
-        doc(db, "Whishlist", editingId),
+        doc(db, "Wishlist", editingId),
         { text: trimmed, note: trimmedNote },
         {}
       );
       setEditingId(null);
     } else {
-      await addDoc(collection(db, "Whishlist"), {
+      await addDoc(collection(db, "Wishlist"), {
         text: trimmed,
         note: trimmedNote,
         ownerId: user.uid,
@@ -75,7 +75,7 @@ export default function WordsList() {
     setNote(item.note || "");
   };
   const remove = async (id) => {
-    await deleteDoc(doc(db, "Whishlist", id));
+    await deleteDoc(doc(db, "Wishlist", id));
     if (editingId === id) {
       setEditingId(null);
       setWord("");
@@ -93,15 +93,17 @@ export default function WordsList() {
           value={word}
           onChangeText={setWord}
           autoCapitalize="none"
+          placeholderTextColor="#555"
         />
         <TextInput
           style={[s.input, { flex: 1 }]}
-          placeholder="Note or Description"
+          placeholder="Note/Description"
           value={note}
           onChangeText={setNote}
           autoCapitalize="none"
+          placeholderTextColor="#555"
         />
-        <View style={{ width: 8 }} />
+        <View />
         <Button
           title={editingId ? "Save" : "Add"}
           color="#FFC400"
@@ -131,7 +133,7 @@ export default function WordsList() {
           </View>
         )}
         ListEmptyComponent={
-          <Text style={s.subtle}>No words yet. Add one ↑</Text>
+          <Text style={s.subtle}>No items yet? Add one ↑</Text>
         }
       />
     </View>

@@ -1,4 +1,4 @@
-import WordsList from "../../src/tabs/WordsList";
-export default function WordsTab() {
-  return <WordsList />;
+import WishList from "../../src/tabs/WishList";
+export default function WishListTab() {
+  return <WishList />;
 }

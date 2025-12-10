@@ -55,8 +55,8 @@ export default function SignIn() {
       />
       {!!error && <Text style={s.error}>{error}</Text>}
       <View style={{ flexDirection: "row", gap: 12, marginTop: 8 }}>
-        <Button title="Sign In" onPress={onSignIn} />
-        <Button title="Create Account" onPress={onSignUp} />
+        <Button title="Sign In" onPress={onSignIn} color="#FFC400" />
+        <Button title="Create Account" onPress={onSignUp} color="#FFC400" />
       </View>
     </View>
   );
